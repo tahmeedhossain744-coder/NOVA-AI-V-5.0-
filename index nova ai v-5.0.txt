@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA AI ULTIMATE v5.0 | Sky Blue Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <style>
+        body {
+            background-color: #07090E;
+            color: #E5E7EB;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .font-mono-code {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .sky-text {
+            background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 50%, #BAE6FD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass {
+            background: rgba(13, 18, 28, 0.92);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #07090E;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38BDF8;
+        }
+
+        /* Code Block Styling */
+        .prose pre {
+            background-color: #05070B !important;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 8px;
+            padding: 36px 12px 12px 12px;
+            overflow-x: auto;
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .prose code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+        }
+
+        .code-toolbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 28px;
+            background: #0F172A;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+        }
+
+        .tool-btn {
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* ================= JARVIS HOLOGRAPHIC VOICE ORB (SKY BLUE) ================= */
+        .jarvis-orb-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orb-ring-1 {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #38BDF8;
+            border-bottom-color: #0284C7;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.45);
+            animation: spin-cw 3s linear infinite;
+        }
+
+        .orb-ring-2 {
+            position: absolute;
+            inset: 18px;
+            border-radius: 50%;
+            border: 2px dashed #7DD3FC;
+            box-shadow: inset 0 0 20px rgba(125, 211, 252, 0.25);
+            animation: spin-ccw 5s linear infinite;
+        }
+
+        .orb-ring-3 {
+            position: absolute;
+            inset: 36px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-left-color: #38BDF8;
+            border-right-color: #BAE6FD;
+            animation: spin-cw 2s linear infinite;
+        }
+
+        .orb-core {
+            width: 86px;
+            height: 86px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #E0F2FE 0%, #38BDF8 45%, #0369A1 100%);
+            box-shadow: 0 0 45px #38BDF8, 0 0 80px rgba(56, 189, 248, 0.4);
+            animation: core-pulse 1.4s ease-in-out infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #05070B;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        @keyframes spin-cw {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin-ccw {
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        @keyframes core-pulse {
+            0% {
+                transform: scale(0.92);
+                box-shadow: 0 0 25px #38BDF8;
+            }
+
+            100% {
+                transform: scale(1.08);
+                box-shadow: 0 0 60px #0EA5E9, 0 0 90px rgba(125, 211, 252, 0.55);
+            }
+        }
+    </style>
+</head>
+
+<body class="h-screen w-screen flex flex-col">
+
+    <!-- ================= 0. SECURE LOGIN SCREEN ================= -->
+    <div id="loginScreen" class="fixed inset-0 z-[60] bg-[#05070B] flex items-center justify-center p-4">
+        <div
+            class="glass p-7 rounded-2xl max-w-sm w-full shadow-[0_0_50px_rgba(56,189,248,0.15)] border border-sky-500/30 text-center space-y-5">
+            <div
+                class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center text-slate-950 font-extrabold text-2xl shadow-lg shadow-sky-500/30">
+                N
+            </div>
+            <div>
+                <h1 class="text-xl font-bold sky-text tracking-wide">NOVA AI SECURITY GATE</h1>
+                <p class="text-xs text-gray-400 mt-1">Authorized Access Only • Tahmeed Workspace</p>
+            </div>
+
+            <form onsubmit="handleLogin(event)" class="space-y-3 text-left">
+                <div>
+                    <label class="block text-[10px] font-mono-code text-sky-400 mb-1 uppercase">Username</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-3 top-2.5 text-sky-400/70 text-xs"></i>
+                        <input type="text" id="loginUser" placeholder="Enter username" required
+                            class="w-full bg-[#090D16] border border-sky-500/30 rounded-lg pl-8 pr-3 py-2 text-xs text-white focus:border-sky-400 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-mono-code text-sky-400 mb-1 uppercase">Access Password</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3 top-2.5 text-sky-400/70 text-xs"></i>
+                        <input type="password" id="loginPass" placeholder="••••••••" required
+                            class="w-full bg-[#090D16] border border-sky-500/30 rounded-lg pl-8 pr-3 py-2 text-xs text-white focus:border-sky-400 focus:outline-none">
+                    </div>
+                </div>
+                <p id="loginError" class="text-[11px] text-rose-400 hidden font-mono-code">❌ ভুল ইউজারনেম বা পাসওয়ার্ড!
+                </p>
+                <button type="submit"
+                    class="w-full py-2.5 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 text-slate-950 font-bold text-xs hover:from-sky-400 hover:to-blue-500 transition shadow-lg shadow-sky-500/25 cursor-pointer">
+                    <i class="fa-solid fa-shield-halved mr-1.5"></i> UNLOCK SYSTEM
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= 1. JARVIS HOLOGRAPHIC VOICE ORB OVERLAY ================= -->
+    <div id="jarvisOrbModal"
+        class="fixed inset-0 z-50 bg-[#05070B]/95 backdrop-blur-md hidden flex-col items-center justify-center p-6 text-center">
+        <button onclick="closeJarvisOrb()"
+            class="absolute top-6 right-6 w-10 h-10 rounded-full bg-slate-900 border border-sky-500/40 text-sky-400 hover:bg-sky-500 hover:text-slate-950 transition">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <p class="text-xs font-mono-code text-sky-400 tracking-[0.25em] mb-6 uppercase">JARVIS NEURAL VOICE INTERFACE
+        </p>
+
+        <div class="jarvis-orb-container mb-8">
+            <div class="orb-ring-1"></div>
+            <div class="orb-ring-2"></div>
+            <div class="orb-ring-3"></div>
+            <div class="orb-core">NOVA</div>
+        </div>
+
+        <h3 id="orbStatusText" class="text-lg font-bold sky-text mb-2">Listening to Tahmeed...</h3>
+        <p id="orbTranscript"
+            class="text-sm text-gray-300 max-w-md min-h-[24px] font-mono-code bg-black/60 px-4 py-2 rounded-xl border border-sky-500/25">
+            "বাংলা বা ইংরেজিতে তোমার কমান্ড বলো..."
+        </p>
+
+        <div class="flex gap-3 mt-6">
+            <button onclick="triggerOrbListening()"
+                class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-slate-950 font-bold text-xs shadow-lg hover:opacity-90">
+                <i class="fa-solid fa-microphone mr-1.5"></i> Speak Again
+            </button>
+            <button onclick="closeJarvisOrb()"
+                class="px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-gray-300 text-xs hover:border-sky-400">
+                Exit Voice Mode
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= 2. CUSTOM PROMPT TEMPLATE CREATOR MODAL ================= -->
+    <div id="templateModal" class="fixed inset-0 z-50 bg-black/85 hidden items-center justify-center p-4">
+        <div class="glass p-5 rounded-2xl max-w-md w-full shadow-2xl space-y-3">
+            <div class="flex justify-between items-center">
+                <h3 class="text-base font-bold sky-text"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Create
+                    Custom Prompt Template</h3>
+                <button onclick="toggleTemplateModal()" class="text-gray-400 hover:text-white"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div>
+                <label class="block text-[10px] text-sky-400 font-mono-code mb-1">BUTTON LABEL (Short Name)</label>
+                <input type="text" id="tplTitleInput" placeholder="e.g. 🚀 Next.js API Route"
+                    class="w-full bg-black border border-sky-500/40 rounded-lg px-3 py-2 text-xs text-white focus:outline-none">
+            </div>
+            <div>
+                <label class="block text-[10px] text-cyan-400 font-mono-code mb-1">FULL PROMPT COMMAND</label>
+                <textarea id="tplPromptInput" rows="3"
+                    placeholder="Write a complete Next.js App Router API route with error handling..."
+                    class="w-full bg-black border border-cyan-500/40 rounded-lg px-3 py-2 text-xs text-white focus:outline-none"></textarea>
+            </div>
+            <div class="flex gap-2 pt-1">
+                <button onclick="saveCustomTemplate()"
+                    class="flex-1 py-2 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs hover:bg-sky-400">Add
+                    Button</button>
+                <button onclick="toggleTemplateModal()"
+                    class="px-4 py-2 rounded-lg bg-slate-800 text-gray-300 text-xs">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 3. MULTI-API KEY VAULT MODAL ================= -->
+    <div id="apiModal" class="fixed inset-0 z-50 bg-black/85 hidden items-center justify-center p-4">
+        <div class="glass p-5 rounded-2xl max-w-md w-full shadow-2xl space-y-3">
+            <div class="flex justify-between items-center">
+                <h3 class="text-base font-bold sky-text"><i class="fa-solid fa-key mr-2"></i>Multi-Engine API Vault</h3>
+                <button onclick="toggleApiModal()" class="text-gray-400 hover:text-white"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-[11px] text-gray-400">তোমার ফ্রি API Key গুলো এখানে সেভ করো (শুধুমাত্র লোকাল ব্রাউজারে সেভ
+                থাকবে):</p>
+
+            <div>
+                <label class="block text-[10px] text-sky-300 font-mono-code mb-1">1. OPENROUTER API KEY
+                    (sk-or-v1-...)</label>
+                <input type="password" id="openrouterKeyInput" placeholder="sk-or-v1-..."
+                    class="w-full bg-black border border-sky-500/40 rounded-lg px-3 py-2 text-xs text-white font-mono-code focus:outline-none">
+            </div>
+            <div>
+                <label class="block text-[10px] text-cyan-400 font-mono-code mb-1">2. GROQ API KEY (gsk_...)</label>
+                <input type="password" id="groqKeyInput" placeholder="gsk_..."
+                    class="w-full bg-black border border-cyan-500/40 rounded-lg px-3 py-2 text-xs text-white font-mono-code focus:outline-none">
+            </div>
+            <div>
+                <label class="block text-[10px] text-blue-400 font-mono-code mb-1">3. GEMINI API KEY (AIzaSy...)</label>
+                <input type="password" id="geminiKeyInput" placeholder="AIzaSy..."
+                    class="w-full bg-black border border-blue-500/40 rounded-lg px-3 py-2 text-xs text-white font-mono-code focus:outline-none">
+            </div>
+
+            <div class="flex gap-2 pt-2">
+                <button onclick="saveSettings()"
+                    class="flex-1 py-2 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs hover:bg-sky-400">Save All
+                    Keys</button>
+                <button onclick="toggleApiModal()"
+                    class="px-4 py-2 rounded-lg bg-slate-800 text-gray-300 text-xs">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 4. MAIN WORKSPACE ================= -->
+    <div class="flex h-full w-full overflow-hidden">
+
+        <!-- LEFT SIDEBAR -->
+        <aside id="sidebar" class="w-56 bg-[#090D16] border-r border-sky-500/20 flex flex-col justify-between shrink-0">
+            <div class="flex flex-col h-full overflow-hidden">
+                <div class="p-3 border-b border-sky-500/20 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div
+                            class="w-7 h-7 rounded-lg bg-sky-500 flex items-center justify-center text-slate-950 font-bold text-sm">
+                            N</div>
+                        <div>
+                            <h2 class="font-bold text-xs sky-text">NOVA AI v5.0</h2>
+                            <span class="text-[9px] text-emerald-400 font-mono-code">● SKY EDITION</span>
+                        </div>
+                    </div>
+                    <button onclick="createNewChat()"
+                        class="px-2 py-1 rounded bg-sky-500/20 text-sky-400 text-[11px] font-bold hover:bg-sky-500 hover:text-slate-950">
+                        + New
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-2.5 space-y-3">
+                    <div class="space-y-1">
+                        <p class="text-[9px] font-mono-code text-gray-500 px-2 uppercase">Specialist Modes</p>
+                        <button onclick="switchMode('jarvis')" id="btn-jarvis"
+                            class="mode-btn w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-left bg-sky-500/15 text-sky-400 border border-sky-500/40 text-xs font-semibold">
+                            <i class="fa-solid fa-robot w-4"></i> Jarvis Core AI
+                        </button>
+                        <button onclick="switchMode('code')" id="btn-code"
+                            class="mode-btn w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-left text-gray-300 hover:bg-slate-900 border border-transparent text-xs">
+                            <i class="fa-solid fa-code w-4 text-cyan-400"></i> All-Language Studio
+                        </button>
+                        <button onclick="switchMode('cyber')" id="btn-cyber"
+                            class="mode-btn w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-left text-gray-300 hover:bg-slate-900 border border-transparent text-xs">
+                            <i class="fa-solid fa-user-secret w-4 text-emerald-400"></i> Ethical Hacking Lab
+                        </button>
+                        <button onclick="switchMode('media')" id="btn-media"
+                            class="mode-btn w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-left text-gray-300 hover:bg-slate-900 border border-transparent text-xs">
+                            <i class="fa-solid fa-film w-4 text-indigo-400"></i> Photo & Video Maker
+                        </button>
+                        <button onclick="switchMode('freelance')" id="btn-freelance"
+                            class="mode-btn w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-left text-gray-300 hover:bg-slate-900 border border-transparent text-xs">
+                            <i class="fa-solid fa-briefcase w-4 text-sky-300"></i> Freelancing Hub
+                        </button>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-800">
+                        <p class="text-[9px] font-mono-code text-gray-500 px-2 mb-1 uppercase">Saved History</p>
+                        <div id="historyList" class="space-y-1"></div>
+                    </div>
+                </div>
+
+                <div class="p-2.5 border-t border-sky-500/20 space-y-1.5">
+                    <button onclick="toggleApiModal()"
+                        class="w-full py-1.5 px-2 rounded-lg bg-sky-500/15 border border-sky-500/30 text-[11px] text-sky-400 hover:bg-sky-500/25">
+                        <i class="fa-solid fa-key mr-1"></i> Configure API Keys
+                    </button>
+                    <button onclick="logoutSystem()"
+                        class="w-full py-1.5 px-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-[11px] text-rose-400 hover:bg-rose-500/20">
+                        <i class="fa-solid fa-right-from-bracket mr-1"></i> Lock / Logout
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CENTER STAGE -->
+        <main class="flex-1 flex flex-col h-full bg-[#07090E] min-w-0">
+
+            <!-- TOP BAR -->
+            <header
+                class="h-12 border-b border-sky-500/20 px-3 flex items-center justify-between bg-[#090D16] shrink-0 gap-2">
+                <div class="flex items-center gap-2 overflow-x-auto">
+                    <button onclick="toggleSidebar()"
+                        class="p-1.5 rounded bg-slate-900 text-sky-400 hover:bg-slate-800 text-xs">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <!-- AI Model Selector -->
+                    <select id="modelSelector"
+                        class="bg-black border border-sky-500/40 rounded px-2 py-1 text-[11px] text-sky-300 font-mono-code focus:outline-none cursor-pointer">
+                        <optgroup label="OpenRouter (Free)" class="bg-slate-900">
+                            <option value="openrouter:qwen/qwen-2.5-coder-32b-instruct:free">OpenRouter: Qwen 2.5 Coder
+                            </option>
+                            <option value="openrouter:deepseek/deepseek-r1:free">OpenRouter: DeepSeek R1</option>
+                            <option value="openrouter:meta-llama/llama-3.3-70b-instruct:free">OpenRouter: Llama 3.3 70B
+                            </option>
+                        </optgroup>
+                        <optgroup label="Groq (Ultra-Fast)" class="bg-slate-900">
+                            <option value="groq:llama-3.3-70b-versatile">Groq: Llama 3.3 70B</option>
+                            <option value="groq:deepseek-r1-distill-llama-70b">Groq: DeepSeek R1 Distill</option>
+                        </optgroup>
+                        <optgroup label="Google Gemini" class="bg-slate-900">
+                            <option value="gemini:gemini-2.5-flash">Gemini 2.5 Flash</option>
+                        </optgroup>
+                    </select>
+
+                    <!-- Language Selector -->
+                    <select id="langSelector" onchange="onLanguageChange()"
+                        class="bg-black border border-cyan-500/40 rounded px-2 py-1 text-[11px] text-cyan-300 font-mono-code focus:outline-none cursor-pointer">
+                        <option value="auto" class="bg-slate-900">Lang: Auto</option>
+                        <option value="python" class="bg-slate-900">Python 3</option>
+                        <option value="c" class="bg-slate-900">C</option>
+                        <option value="cpp" class="bg-slate-900">C++</option>
+                        <option value="javascript" class="bg-slate-900">JavaScript</option>
+                        <option value="typescript" class="bg-slate-900">TypeScript</option>
+                        <option value="html" class="bg-slate-900">HTML/CSS/JS</option>
+                        <option value="java" class="bg-slate-900">Java</option>
+                        <option value="php" class="bg-slate-900">PHP</option>
+                        <option value="go" class="bg-slate-900">Go</option>
+                        <option value="rust" class="bg-slate-900">Rust</option>
+                        <option value="sql" class="bg-slate-900">SQL</option>
+                        <option value="bash" class="bg-slate-900">Bash</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center gap-1.5 shrink-0">
+                    <!-- JARVIS LIVE ORB BUTTON -->
+                    <button onclick="openJarvisOrb()"
+                        class="px-2.5 py-1 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-slate-950 font-bold text-[11px] flex items-center gap-1.5 shadow hover:opacity-90 cursor-pointer">
+                        <span class="w-2 h-2 rounded-full bg-slate-950 animate-ping"></span> Jarvis Orb
+                    </button>
+
+                    <button onclick="toggleVoiceOutput()" id="ttsBtn"
+                        class="px-2 py-1 rounded bg-slate-900 border border-slate-700 text-xs text-gray-300">
+                        <i class="fa-solid fa-volume-xmark"></i>
+                    </button>
+                    <button onclick="togglePreviewPanel()"
+                        class="px-2.5 py-1 rounded bg-cyan-500/15 border border-cyan-500/40 text-xs text-cyan-400 font-semibold">
+                        <i class="fa-solid fa-play mr-1"></i> Studio
+                    </button>
+                </div>
+            </header>
+
+            <!-- CHAT MESSAGES -->
+            <div id="chatContainer" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+
+            <!-- ATTACHMENT BAR -->
+            <div id="attachmentBar"
+                class="hidden px-4 py-1.5 bg-[#0D121C] border-t border-sky-500/20 flex items-center justify-between text-xs">
+                <span class="text-cyan-400 font-mono-code"><i class="fa-solid fa-file-code mr-1"></i> <span
+                        id="attachedFileName"></span></span>
+                <button onclick="removeAttachment()" class="text-rose-400">Remove</button>
+            </div>
+
+            <!-- CUSTOM PROMPT TEMPLATES RIBBON -->
+            <div
+                class="px-3 pt-2 pb-1 bg-[#090D16] border-t border-sky-500/15 flex items-center gap-1.5 overflow-x-auto shrink-0">
+                <button onclick="toggleTemplateModal()"
+                    class="px-2.5 py-1 rounded-full bg-sky-500/20 border border-sky-500/50 text-[11px] text-sky-300 font-bold shrink-0 hover:bg-sky-500 hover:text-slate-950 transition">
+                    + Custom Template
+                </button>
+                <div id="templateButtonsList" class="flex items-center gap-1.5"></div>
+            </div>
+
+            <!-- INPUT BAR -->
+            <div class="p-3 pt-1.5 bg-[#090D16] shrink-0">
+                <div class="flex items-end gap-2 bg-black border border-sky-500/40 rounded-xl p-1.5">
+                    <input type="file" id="fileInput" class="hidden" onchange="handleFileUpload(event)">
+                    <button onclick="document.getElementById('fileInput').click()" title="Attach Code or Image"
+                        class="w-9 h-9 rounded-lg bg-slate-900 text-cyan-400 flex items-center justify-center shrink-0 hover:bg-slate-800">
+                        <i class="fa-solid fa-paperclip text-xs"></i>
+                    </button>
+                    <button onclick="openJarvisOrb()" title="Launch Jarvis Voice Orb"
+                        class="w-9 h-9 rounded-lg bg-slate-900 text-sky-400 flex items-center justify-center shrink-0 hover:bg-sky-500/20">
+                        <i class="fa-solid fa-microphone text-xs"></i>
+                    </button>
+                    <textarea id="userInput" rows="1"
+                        placeholder="Select a prompt template above, speak via Jarvis Orb, or type command..."
+                        class="flex-1 bg-transparent text-xs md:text-sm text-white placeholder-gray-500 focus:outline-none py-2 px-1 resize-none"
+                        onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendMessage(); }"></textarea>
+                    <button onclick="sendMessage()"
+                        class="h-9 px-4 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs hover:bg-sky-400 shrink-0">
+                        RUN
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- RIGHT LIVE PREVIEW & COMPILER STUDIO -->
+        <section id="previewPanel"
+            class="w-0 overflow-hidden bg-[#0A0E17] border-l border-sky-500/20 flex flex-col transition-all duration-200">
+            <div class="h-12 border-b border-sky-500/20 px-3 flex items-center justify-between bg-[#0D121C] shrink-0">
+                <span id="studioTitle" class="text-[11px] font-bold font-mono-code text-sky-400">TERMINAL & PREVIEW
+                    STUDIO</span>
+                <button onclick="togglePreviewPanel(false)" class="text-gray-400 hover:text-white"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="previewContent" class="flex-1 bg-[#05070B] overflow-auto"></div>
+        </section>
+
+    </div>
+
+    <script>
+        // ================= 1. LOGIN CREDENTIALS (এখান থেকে বদলাতে পারবে) =================
+        const ADMIN_USERNAME = "tahmeed";
+        const ADMIN_PASSWORD = "12345";
+
+        // ================= 2. এখানে তোমার আসল API KEY বসাও =================
+        const DEFAULT_OPENROUTER_KEY = "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"; // তোমার OpenRouter Key বসাও
+        const DEFAULT_GROQ_KEY = "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"; // তোমার Groq Key বসাও
+        const DEFAULT_GEMINI_KEY = "AQ.Ab8RN6KkCXpSVNu3h0w7N64j1TCz5WEcRy4l1Nnw7ojqDGmyOw"; // তোমার Gemini Key বসাও
+        // =========================================================================
+
+        let currentMode = 'jarvis';
+        let ttsEnabled = false;
+        let previewOpen = false;
+        let attachedFile = null;
+        let sessions = JSON.parse(localStorage.getItem('nova_sessions_v5') || '[]');
+        let currentSessionId = null;
+
+        const defaultTemplates = [
+            { title: "⚡ Debug & Fix Code", prompt: "Find all bugs, security vulnerabilities, and performance issues in my code and provide the fixed version:\n\n" },
+            { title: "🌐 Sky Blue Modern UI", prompt: "Create a modern, responsive Racing Black & Sky Blue web UI component using HTML and Tailwind CSS." },
+            { title: "🛡️ Python Pentest Tool", prompt: "Write a clean educational Python script for network reconnaissance / port scanning with detailed comments." },
+            { title: "💼 Upwork Proposal", prompt: "Write a high-converting Upwork job proposal for a Full-Stack MERN & Next.js web development project." },
+            { title: "🎬 Cine Zone Script", prompt: "Write an engaging YouTube video intro & narration script in Bengali for my movie channel 'Cine Zone BD'." },
+            { title: "🎨 3D Cyber Art", prompt: "/imagine futuristic cybernetic samurai in racing black and glowing sky blue armor, neon rain, 8k" }
+        ];
+        let customTemplates = JSON.parse(localStorage.getItem('nova_custom_templates') || '[]');
+
+        window.onload = () => {
+            // Check Login State
+            if (sessionStorage.getItem('nova_logged_in') === 'true') {
+                document.getElementById('loginScreen').classList.add('hidden');
+            }
+
+            // Auto-Load API Keys
+            const orKey = localStorage.getItem('nova_or_key') || (DEFAULT_OPENROUTER_KEY !== "API_KEY_HERE" ? DEFAULT_OPENROUTER_KEY : "");
+            const grKey = localStorage.getItem('nova_groq_key') || (DEFAULT_GROQ_KEY !== "API_KEY_HERE" ? DEFAULT_GROQ_KEY : "");
+            const gmKey = localStorage.getItem('nova_gemini_key') || (DEFAULT_GEMINI_KEY !== "API_KEY_HERE" ? DEFAULT_GEMINI_KEY : "");
+
+            if (orKey) {
+                localStorage.setItem('nova_or_key', orKey);
+                document.getElementById('openrouterKeyInput').value = orKey;
+            }
+            if (grKey) {
+                localStorage.setItem('nova_groq_key', grKey);
+                document.getElementById('groqKeyInput').value = grKey;
+            }
+            if (gmKey) {
+                localStorage.setItem('nova_gemini_key', gmKey);
+                document.getElementById('geminiKeyInput').value = gmKey;
+            }
+
+            renderTemplates();
+            if (sessions.length > 0) loadSession(sessions[0].id);
+            else createNewChat();
+        };
+
+        // ================= LOGIN & LOGOUT HANDLERS =================
+        function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('loginUser').value.trim();
+            const p = document.getElementById('loginPass').value.trim();
+            if (u === ADMIN_USERNAME && p === ADMIN_PASSWORD) {
+                sessionStorage.setItem('nova_logged_in', 'true');
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('loginError').classList.add('hidden');
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function logoutSystem() {
+            sessionStorage.removeItem('nova_logged_in');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('loginPass').value = '';
+        }
+
+        // ================= CUSTOM PROMPT TEMPLATES ENGINE =================
+        function renderTemplates() {
+            const container = document.getElementById('templateButtonsList');
+            container.innerHTML = '';
+            const allTemplates = [...defaultTemplates, ...customTemplates];
+            allTemplates.forEach((tpl) => {
+                const btn = document.createElement('button');
+                btn.className = "px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 hover:border-sky-400 text-[11px] text-gray-200 shrink-0 transition cursor-pointer";
+                btn.innerText = tpl.title;
+                btn.onclick = () => {
+                    const input = document.getElementById('userInput');
+                    input.value = tpl.prompt;
+                    input.focus();
+                    if (tpl.prompt.startsWith('/imagine')) sendMessage();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function toggleTemplateModal() {
+            const m = document.getElementById('templateModal');
+            m.classList.toggle('hidden'); m.classList.toggle('flex');
+        }
+
+        function saveCustomTemplate() {
+            const title = document.getElementById('tplTitleInput').value.trim();
+            const prompt = document.getElementById('tplPromptInput').value.trim();
+            if (!title || !prompt) return alert('বাটনের নাম এবং প্রম্পট দুটিই লেখো!');
+            customTemplates.unshift({ title, prompt });
+            localStorage.setItem('nova_custom_templates', JSON.stringify(customTemplates));
+            document.getElementById('tplTitleInput').value = '';
+            document.getElementById('tplPromptInput').value = '';
+            toggleTemplateModal();
+            renderTemplates();
+        }
+
+        // ================= JARVIS HOLOGRAPHIC ORB ENGINE =================
+        function openJarvisOrb() {
+            const modal = document.getElementById('jarvisOrbModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            triggerOrbListening();
+        }
+
+        function closeJarvisOrb() {
+            const modal = document.getElementById('jarvisOrbModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function triggerOrbListening() {
+            const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const statusEl = document.getElementById('orbStatusText');
+            const transcriptEl = document.getElementById('orbTranscript');
+
+            if (!SR) {
+                statusEl.innerText = "Browser Voice Not Supported";
+                transcriptEl.innerText = "Please use Chrome or Edge browser for Jarvis Voice Orb.";
+                return;
+            }
+
+            const recognition = new SR();
+            recognition.lang = 'bn-BD';
+            statusEl.innerText = "Listening to Tahmeed...";
+            transcriptEl.innerText = "Speak now (Bangla or English)...";
+
+            recognition.onresult = (event) => {
+                const speechText = event.results[0][0].transcript;
+                transcriptEl.innerText = `"${speechText}"`;
+                statusEl.innerText = "Processing Command...";
+                setTimeout(() => {
+                    closeJarvisOrb();
+                    document.getElementById('userInput').value = speechText;
+                    sendMessage();
+                }, 700);
+            };
+
+            recognition.onerror = () => {
+                statusEl.innerText = "Didn't catch that. Tap 'Speak Again'";
+            };
+
+            recognition.start();
+        }
+
+        // ================= CORE WORKSPACE FUNCTIONS =================
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('hidden'); }
+        function toggleApiModal() {
+            const m = document.getElementById('apiModal');
+            m.classList.toggle('hidden'); m.classList.toggle('flex');
+        }
+        function saveSettings() {
+            const orK = document.getElementById('openrouterKeyInput').value.trim();
+            const grK = document.getElementById('groqKeyInput').value.trim();
+            const gmK = document.getElementById('geminiKeyInput').value.trim();
+            if (orK) localStorage.setItem('nova_or_key', orK);
+            if (grK) localStorage.setItem('nova_groq_key', grK);
+            if (gmK) localStorage.setItem('nova_gemini_key', gmK);
+            toggleApiModal();
+            appendMessage('ai', '✅ **API Keys সেভ হয়েছে!** এখন যেকোনো প্রম্পট টেমপ্লেট বা Jarvis Orb দিয়ে কাজ শুরু করো।');
+        }
+
+        function onLanguageChange() {
+            const lang = document.getElementById('langSelector').value;
+            if (lang !== 'auto') switchMode('code');
+        }
+
+        function createNewChat() {
+            const id = 's-' + Date.now();
+            sessions.unshift({ id, title: 'Jarvis Session', messages: [] });
+            localStorage.setItem('nova_sessions_v5', JSON.stringify(sessions));
+            loadSession(id);
+        }
+
+        function loadSession(id) {
+            currentSessionId = id;
+            const session = sessions.find(s => s.id === id);
+            const container = document.getElementById('chatContainer');
+            container.innerHTML = '';
+            if (!session || session.messages.length === 0) {
+                container.innerHTML = `
+                    <div class="glass p-4 rounded-xl text-xs space-y-2.5">
+                        <p class="font-bold text-sky-400 text-sm">⚡ Nova AI v5.0 — Sky Blue Edition Ready!</p>
+                        <p class="text-gray-300">ওপরের **Jarvis Orb** বাটনে ক্লিক করে ভয়েস ইন্টারফেস চালু করো, অথবা নিচের **Custom Prompt Templates** বার থেকে এক ক্লিকেই কোড, হ্যাকিং স্ক্রিপ্ট ও প্রপোজাল জেনারেট করো।</p>
+                    </div>
+                `;
+            } else {
+                session.messages.forEach(m => m.isRaw ? appendRawHTML(m.text) : appendMessage(m.sender, m.text, false));
+            }
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('historyList');
+            list.innerHTML = '';
+            sessions.forEach(s => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-2 py-1 rounded text-[11px] truncate ${s.id === currentSessionId ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:bg-slate-900'}`;
+                btn.innerText = '💬 ' + s.title;
+                btn.onclick = () => loadSession(s.id);
+                list.appendChild(btn);
+            });
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(b => {
+                b.classList.remove('bg-sky-500/15', 'text-sky-400', 'border-sky-500/40');
+                b.classList.add('text-gray-300', 'border-transparent');
+            });
+            const active = document.getElementById('btn-' + mode);
+            if (active) {
+                active.classList.add('bg-sky-500/15', 'text-sky-400', 'border-sky-500/40');
+                active.classList.remove('text-gray-300', 'border-transparent');
+            }
+        }
+
+        function togglePreviewPanel(force = null) {
+            const p = document.getElementById('previewPanel');
+            previewOpen = force !== null ? force : !previewOpen;
+            p.classList.toggle('w-0', !previewOpen);
+            p.classList.toggle('w-full', previewOpen);
+            p.classList.toggle('md:w-[48%]', previewOpen);
+        }
+
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            document.getElementById('attachedFileName').innerText = file.name;
+            document.getElementById('attachmentBar').classList.remove('hidden');
+            const reader = new FileReader();
+            reader.onload = (ev) => { attachedFile = { name: file.name, content: ev.target.result }; };
+            reader.readAsText(file);
+        }
+
+        function removeAttachment() {
+            attachedFile = null;
+            document.getElementById('attachmentBar').classList.add('hidden');
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const text = input.value.trim();
+            if (!text && !attachedFile) return;
+
+            const userMsg = attachedFile ? `📎 [${attachedFile.name}]\n${text}` : text;
+            appendMessage('user', userMsg);
+            input.value = '';
+            const filePayload = attachedFile ? `\n\n--- File (${attachedFile.name}) ---\n${attachedFile.content}` : '';
+            removeAttachment();
+
+            if (text.toLowerCase().startsWith('/imagine')) {
+                const prompt = text.replace(/\/imagine/i, '').trim() || 'cyberpunk warrior';
+                const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=800&nologo=true`;
+                appendRawHTML(`<p class="text-xs text-sky-400 font-mono-code mb-2">🎨 Generated: "${prompt}"</p><img src="${imgUrl}" class="rounded-lg border border-sky-500/40 max-w-xs w-full">`);
+                return;
+            }
+
+            if (text.toLowerCase().startsWith('/video')) {
+                const prompt = text.replace(/\/video/i, '').trim() || 'futuristic city';
+                const s1 = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt + ' cinematic 8k')}?width=900&height=500&nologo=true`;
+                appendMessage('ai', `🎬 **"${prompt}"** — ডানপাশের Studio-তে চালু হয়েছে!`);
+                renderLiveStudioHTML(`<body style="margin:0;background:#05070B;display:flex;align-items:center;justify-content:center;height:100vh;"><img src="${s1}" style="width:92%;border:2px solid #38BDF8;border-radius:10px;"></body>`, 'AI VIDEO STUDIO');
+                return;
+            }
+
+            const selectedFull = document.getElementById('modelSelector').value;
+            const [provider, modelName] = selectedFull.split(':');
+            const selectedLang = document.getElementById('langSelector').value;
+            const sysPrompt = `You are NOVA AI ULTIMATE built for Tahmeed. ${selectedLang !== 'auto' ? `Write code in ${selectedLang.toUpperCase()}.` : 'Support all programming languages cleanly.'}`;
+
+            try {
+                let aiReply = '';
+
+                if (provider === 'openrouter') {
+                    const key = localStorage.getItem('nova_or_key');
+                    if (!key) return appendMessage('ai', '⚠️ **OpenRouter API Key নেই!** বাম পাশের **Configure API Keys** বাটনে ক্লিক করে `sk-or-v1-...` Key বসাও।');
+                    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            model: modelName,
+                            messages: [{ role: 'system', content: sysPrompt }, { role: 'user', content: text + filePayload }]
+                        })
+                    });
+                    const data = await res.json();
+                    if (data.error) throw new Error(data.error.message);
+                    aiReply = data.choices[0].message.content;
+
+                } else if (provider === 'groq') {
+                    const key = localStorage.getItem('nova_groq_key');
+                    if (!key) return appendMessage('ai', '⚠️ **Groq API Key নেই!** বাম পাশের **Configure API Keys** বাটনে ক্লিক করে `gsk_...` Key বসাও।');
+                    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            model: modelName,
+                            messages: [{ role: 'system', content: sysPrompt }, { role: 'user', content: text + filePayload }]
+                        })
+                    });
+                    const data = await res.json();
+                    if (data.error) throw new Error(data.error.message);
+                    aiReply = data.choices[0].message.content;
+
+                } else if (provider === 'gemini') {
+                    const key = localStorage.getItem('nova_gemini_key');
+                    if (!key) return appendMessage('ai', '⚠️ **Gemini API Key নেই!** বাম পাশের **Configure API Keys** বাটনে ক্লিক করে `AIzaSy...` Key বসাও।');
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${key}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            system_instruction: { parts: [{ text: sysPrompt }] },
+                            contents: [{ parts: [{ text: text + filePayload }] }]
+                        })
+                    });
+                    const data = await res.json();
+                    if (data.error) throw new Error(data.error.message);
+                    aiReply = data.candidates[0].content.parts[0].text;
+                }
+
+                appendMessage('ai', aiReply);
+                if (ttsEnabled) window.speechSynthesis.speak(new SpeechSynthesisUtterance(aiReply.replace(/[#*`]/g, '').slice(0, 250)));
+
+            } catch (err) {
+                appendMessage('ai', `❌ **API Error:** ${err.message}`);
+            }
+        }
+
+        function executeCodeBlock(lang, code) {
+            togglePreviewPanel(true);
+            const box = document.getElementById('previewContent');
+            lang = lang.toLowerCase();
+
+            if (lang === 'html' || lang === 'xml') {
+                renderLiveStudioHTML(code, 'LIVE HTML PREVIEW');
+                return;
+            }
+            if (lang === 'javascript' || lang === 'js') {
+                let logs = [];
+                try { new Function('console', code)({ log: (...a) => logs.push(a.join(' ')) }); } catch (e) { logs.push(e.message); }
+                box.innerHTML = `<div class="p-4 font-mono-code text-xs"><p class="text-sky-400 mb-2">$ node script.js</p><pre class="text-emerald-400 bg-black p-3 rounded">${escapeHtml(logs.join('\n') || 'Done')}</pre></div>`;
+                return;
+            }
+            document.getElementById('studioTitle').innerText = `${lang.toUpperCase()} TERMINAL`;
+            box.innerHTML = `<div class="p-4 font-mono-code text-xs space-y-2"><p class="text-emerald-400">$ ${lang} compiler ready</p><pre class="text-sky-300 bg-black p-3 rounded border border-sky-500/30 overflow-x-auto">${escapeHtml(code)}</pre></div>`;
+        }
+
+        function renderLiveStudioHTML(html, title) {
+            document.getElementById('studioTitle').innerText = title;
+            togglePreviewPanel(true);
+            const box = document.getElementById('previewContent');
+            box.innerHTML = `<iframe id="liveFrame" class="w-full h-full border-0 bg-white"></iframe>`;
+            const doc = document.getElementById('liveFrame').contentWindow.document;
+            doc.open(); doc.write(html); doc.close();
+        }
+
+        function appendMessage(sender, text, save = true) {
+            const box = document.getElementById('chatContainer');
+            const div = document.createElement('div');
+            div.className = sender === 'user' ? 'flex justify-end' : 'flex gap-2.5';
+
+            if (sender === 'user') {
+                div.innerHTML = `<div class="bg-sky-500/20 border border-sky-500/40 text-white px-3.5 py-2 rounded-xl text-xs md:text-sm max-w-md whitespace-pre-wrap">${escapeHtml(text)}</div>`;
+            } else {
+                div.innerHTML = `
+                    <div class="w-7 h-7 rounded bg-sky-500 text-slate-950 font-bold flex items-center justify-center shrink-0 text-xs mt-1">N</div>
+                    <div class="glass p-3.5 rounded-xl text-xs md:text-sm prose prose-invert max-w-full overflow-x-auto">${marked.parse(text)}</div>
+                `;
+                div.querySelectorAll('pre').forEach(pre => {
+                    const codeEl = pre.querySelector('code');
+                    hljs.highlightElement(codeEl);
+                    const langClass = Array.from(codeEl.classList).find(c => c.startsWith('language-')) || 'language-code';
+                    const langName = langClass.replace('language-', '');
+
+                    const toolbar = document.createElement('div');
+                    toolbar.className = 'code-toolbar';
+                    toolbar.innerHTML = `
+                        <span class="text-sky-400 uppercase font-bold">${langName}</span>
+                        <div class="flex gap-1.5">
+                            <button class="tool-btn bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 run-btn">▶ Run</button>
+                            <button class="tool-btn bg-sky-500/20 text-sky-400 border border-sky-500/40 copy-btn-new">Copy</button>
+                        </div>
+                    `;
+                    toolbar.querySelector('.run-btn').onclick = () => executeCodeBlock(langName, codeEl.innerText);
+                    toolbar.querySelector('.copy-btn-new').onclick = (e) => {
+                        navigator.clipboard.writeText(codeEl.innerText);
+                        e.target.innerText = 'Copied!';
+                        setTimeout(() => e.target.innerText = 'Copy', 1500);
+                    };
+                    pre.appendChild(toolbar);
+                });
+            }
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+
+            if (save) {
+                const s = sessions.find(x => x.id === currentSessionId);
+                if (s) {
+                    if (s.messages.length === 0 && sender === 'user') s.title = text.slice(0, 22);
+                    s.messages.push({ sender, text, isRaw: false });
+                    localStorage.setItem('nova_sessions_v5', JSON.stringify(sessions));
+                    renderHistory();
+                }
+            }
+        }
+
+        function appendRawHTML(html) {
+            const box = document.getElementById('chatContainer');
+            const div = document.createElement('div');
+            div.className = 'flex gap-2.5';
+            div.innerHTML = `<div class="w-7 h-7 rounded bg-sky-500 text-slate-950 font-bold flex items-center justify-center shrink-0 text-xs">N</div><div class="glass p-3.5 rounded-xl">${html}</div>`;
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function toggleVoiceOutput() {
+            ttsEnabled = !ttsEnabled;
+            document.getElementById('ttsBtn').innerHTML = ttsEnabled ? '<i class="fa-solid fa-volume-high text-sky-400"></i>' : '<i class="fa-solid fa-volume-xmark"></i>';
+        }
+    </script>
+</body>
+
+</html>
